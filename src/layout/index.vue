@@ -1,5 +1,7 @@
 <template>
-  <div class="layout-container">
+  <div class="layout-container"><div>
+    测试问题
+  </div>
     <Sidebar></Sidebar>
     <router-view />
   </div>
