@@ -1,7 +1,7 @@
 /**
  * 将后端返回的菜单数据转换为Vue Router路由配置
  * @param {Array} menuList 后端返回的菜单列表
- * @returns {Array} 转换后的路由配置数组
+ * @returns {Array} 轉换后的路由配置数组
  */
 export function convertMenuToRoutes(menuList) {
     const routes = []
@@ -115,6 +115,12 @@ function getComponentByUrl(url) {
     if (componentMap[cleanUrl]) {
         console.log('找到组件映射(清理后):', cleanUrl)
         return componentMap[cleanUrl]
+    }
+
+    // 特殊处理：如果URL中包含 '404' 字样
+    if (url.includes('404')) {
+        console.log('检测到404相关URL，映射到404页面:', url)
+        return () => import('@/views/404/index.vue')
     }
 
     console.warn('未找到组件映射，使用默认404页面:', url)

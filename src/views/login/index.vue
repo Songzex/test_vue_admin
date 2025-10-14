@@ -12,5 +12,7 @@
 <style scoped>
 .login-container {
   padding: 20px;
+  background-color: bisque;
+  text-align: center;
 }
 </style>

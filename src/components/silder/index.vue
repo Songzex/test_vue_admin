@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed, watch ,onMounted,ref} from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem.vue' // 递归子组件
 import { useTheme } from '@/hooks/userTheme.js'
@@ -34,6 +34,7 @@ import { getMenuList } from '@/utils/http/login/index.js'
 // 获取状态和路由
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 const { theme } = useTheme()
 const menuList=ref([])
 
@@ -49,6 +50,9 @@ onMounted(async () => {
     const { addDynamicRoutes } = await import('@/router/index.js')
     const dynamicRoutes = addDynamicRoutes(menuList.value)
     console.log('动态路由:', dynamicRoutes)
+    
+    // 手动导航到默认页面
+    router.push('/dashboard')
   } catch (error) {
     console.error('获取菜单失败:', error)
   }

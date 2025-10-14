@@ -1,11 +1,17 @@
 <template>
   <div class="layout-container">
-    <Header />
-    <Sidebar />
-    <el-main >
-      <router-view />
-    </el-main>
-    <Footer />
+    <div class="header">
+<!--      <h2>管理系统</h2>-->
+    </div>
+    <div class="main-wrapper">
+      <Sidebar />
+      <el-main class="main-container">
+        <router-view />
+      </el-main>
+    </div>
+    <div class="footer">
+      <p>© 2025 管理系统</p>
+    </div>
   </div>
 </template>
 
@@ -17,18 +23,40 @@ import Sidebar from '../components/silder/index.vue'
 .layout-container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .main-container {
+  width: 800px;
   flex: 1;
   padding: 20px;
-  margin-left: 200px; /* 为侧边栏留出空间 */
-  background-color: #986d6d; /* 添加背景色以便更好地看到内容区域 */
+  background-color: #f0f2f5;
+  overflow-y: auto;
 }
 
-/* 确保内容区域有足够的z-index */
-:deep(.main-container) {
-  position: relative;
-  z-index: 1;
+.footer {
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 </style>

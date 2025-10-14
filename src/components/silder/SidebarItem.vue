@@ -104,7 +104,9 @@ const handleMenuItemClick = (menu) => {
     if (router && typeof router.push === 'function') {
       const fullPath = '/' + menu.url
       console.log('导航到:', fullPath)
-      router.push(fullPath).catch(err => {
+      router.push(fullPath).then(() => {
+        console.log('路由导航成功')
+      }).catch(err => {
         console.error('路由导航错误:', err)
       })
     } else {
