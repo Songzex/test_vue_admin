@@ -27,7 +27,7 @@
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import SidebarItem from './SiderbarItem.vue' // 递归子组件
+import SidebarItem from './SidebarItem.vue' // 递归子组件
 import { useTheme } from '@/hooks/userTheme.js' //
 
 // 获取状态和路由
@@ -37,6 +37,7 @@ const { theme } = useTheme()
 
 // 从Vuex获取后端返回的原始菜单列表（也可直接使用路由数据）
 const menuList = computed(() => store.state.permission.menuList)
+console.log('菜单列表menuList:', menuList.value)
 // 侧边栏折叠状态（可从Vuex获取全局状态）
 const isCollapse = computed(() => store.state.app.sidebarCollapse)
 
