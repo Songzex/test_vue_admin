@@ -1,47 +1,43 @@
+// 修改 App.vue 文件
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import Sidebar from './components/silder/index.vue'
+import layout from './layout/index.vue'
+import {onMounted} from "vue";
+import {useStore} from "vuex";
+import {useRoute} from "vue-router";
+const store = useStore()
+const route = useRoute()
+import { getMenuList } from '@/utils/http/login/index.js'
+
+// 确保在组件挂载时获取菜单列表
+onMounted(async () => {
+  try {
+    const res = await getMenuList();
+    // 使用 commit 更新状态
+    store.commit('permission/SET_ROUTES', res);
+    console.log('菜单列表:', res)
+  } catch (error) {
+    console.error('获取菜单失败:', error)
+  }
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <layout>
+<!--    <header>-->
+<!--      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />-->
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+<!--      <div class="wrapper">-->
+<!--        <HelloWorld msg="You did it!" />-->
+<!--      </div>-->
+<!--    </header>-->
 
-  <main>
-    <TheWelcome />
-  </main>
+    <Sidebar></Sidebar>
+
+<!--    <main>
+      <TheWelcome />
+    </main>-->
+  </layout>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

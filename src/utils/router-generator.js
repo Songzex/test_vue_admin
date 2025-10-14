@@ -55,7 +55,7 @@ function convertMenuToRoute(menu) {
 
     // 目录类型菜单(type=0)通常作为路由容器，不需要组件
     if (menu.type === 0) {
-        route.component = () => import('@/layout') // 使用布局组件作为容器
+        route.component = () => import('@/layout/index.vue') // 使用布局组件作为容器
         // 如果目录只有一个子路由，设置重定向
         if (route.children.length === 1) {
             route.redirect = route.children[0].path
@@ -72,14 +72,15 @@ function convertMenuToRoute(menu) {
 function getComponentByUrl(url) {
     if (!url) return null
 
-    // 组件路径映射表，key为后端返回的url，value为组件路径
+    // 组件路径映射表
     const componentMap = {
-        'admin/config-gift-group': () => import('@/views/admin/config-gift-group'),
-        // 其他页面的映射关系
-        // 'user/list': () => import('@/views/user/list'),
-        // 'dashboard': () => import('@/views/dashboard/index')
+        'login/index': () => import('@/views/login/index.vue'),
+        '404/index': () => import('@/views/404/index.vue'),
+        // 添加更多页面的映射关系
+        'dashboard': () => import('@/views/index/index.vue')
     }
 
-    // 如果有匹配的组件则返回，否则返回默认的404组件
-    return componentMap[url] || (() => import('@/views/error-page/404'))
+    return componentMap[url] || (() => import('@/views/404/index.vue'))
 }
+
+

@@ -1,16 +1,28 @@
+// store/index.js
 import { createStore } from 'vuex'
+import permission from './permission/permission'
 
 const store = createStore({
     state() {
         return {
-            // 在这里定义状态
+            app: {
+                sidebarCollapse: false
+            }
         }
     },
     mutations: {
-        // 在这里定义变更
+        // 添加修改侧边栏状态的mutation
+        TOGGLE_SIDEBAR_COLLAPSE(state) {
+            state.app.sidebarCollapse = !state.app.sidebarCollapse
+        }
     },
     actions: {
-        // 在这里定义动作
+        toggleSidebarCollapse({ commit }) {
+            commit('TOGGLE_SIDEBAR_COLLAPSE')
+        }
+    },
+    modules: {
+        permission // 注册permission模块
     }
 })
 

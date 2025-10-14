@@ -1,17 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Layout from '@/layout'
-import { convertMenuToRoutes } from '@/utils/route-generator'
+import Layout from '@/layout/index.vue'
+import { convertMenuToRoutes } from '@/utils/router-generator.js'
 
 // 常量路由（不需要权限的路由）
 export const constantRoutes = [
     {
         path: '/login',
-        component: () => import('@/views/login/index'),
+        component: () => import('@/views/login/index.vue'),
         hidden: true
     },
     {
         path: '/404',
-        component: () => import('@/views/error-page/404'),
+        component: () => import('@/views/404/index.vue'),
+        hidden: true
+    },
+    // 添加默认首页路由
+    {
+        path: '/',
+        redirect: '/dashboard',
         hidden: true
     }
 ]
