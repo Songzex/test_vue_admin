@@ -19,6 +19,11 @@ export const constantRoutes = [
         path: '/',
         redirect: '/dashboard',
         hidden: true
+    },
+    {
+        path: '/dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        hidden: true
     }
 ]
 
@@ -34,8 +39,11 @@ const router = createRouter({
  * @param {Array} menuList 后端返回的菜单列表
  */
 export function addDynamicRoutes(menuList) {
+    console.log('开始添加动态路由，菜单列表:', menuList)
+    
     // 1. 将菜单数据转换为路由配置
     const dynamicRoutes = convertMenuToRoutes(menuList)
+    console.log('转换后的动态路由:', dynamicRoutes)
 
     // 2. 创建根路由容器（通常使用Layout组件）
     const rootRoute = {
@@ -47,6 +55,7 @@ export function addDynamicRoutes(menuList) {
 
     // 3. 添加动态路由到路由系统
     router.addRoute(rootRoute)
+    console.log('已添加根路由')
 
     // 4. 添加404路由作为最后一项
     router.addRoute({
@@ -54,7 +63,11 @@ export function addDynamicRoutes(menuList) {
         redirect: '/404',
         hidden: true
     })
+    console.log('已添加404路由')
 
+    console.log('添加的动态路由:', dynamicRoutes)
+    console.log('所有路由:', router.getRoutes())
+    
     return dynamicRoutes
 }
 

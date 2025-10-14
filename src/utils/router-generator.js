@@ -14,6 +14,7 @@ export function convertMenuToRoutes(menuList) {
         }
     })
 
+    console.log('转换后的路由配置:', routes)
     return routes
 }
 
@@ -46,6 +47,10 @@ function convertMenuToRoute(menu) {
         menu.list.forEach(childMenu => {
             const childRoute = convertMenuToRoute(childMenu)
             if (childRoute) {
+                // 确保子路由路径正确
+                if (!childRoute.path.startsWith('/')) {
+                    childRoute.path = route.path + '/' + childRoute.path
+                }
                 route.children.push(childRoute)
             }
         })
@@ -71,9 +76,11 @@ function convertMenuToRoute(menu) {
 
     // 如果没有组件则不生成路由
     if (!route.component) {
+        console.warn('路由缺少组件:', route)
         return null
     }
 
+    console.log('生成路由:', route)
     return route
 }
 
@@ -82,7 +89,12 @@ function convertMenuToRoute(menu) {
  * 这里需要根据实际项目的组件路径进行映射
  */
 function getComponentByUrl(url) {
-    if (!url) return null
+    if (!url) {
+        console.warn('URL为空，无法映射组件')
+        return null
+    }
+
+    console.log('尝试映射组件URL:', url)
 
     // 组件路径映射表
     const componentMap = {
@@ -94,15 +106,18 @@ function getComponentByUrl(url) {
 
     // 尝试精确匹配
     if (componentMap[url]) {
+        console.log('找到组件映射:', url)
         return componentMap[url]
     }
 
     // 尝试模糊匹配（去掉可能的文件扩展名）
     const cleanUrl = url.replace('.vue', '').replace('.js', '')
     if (componentMap[cleanUrl]) {
+        console.log('找到组件映射(清理后):', cleanUrl)
         return componentMap[cleanUrl]
     }
 
+    console.warn('未找到组件映射，使用默认404页面:', url)
     // 默认返回404页面
     return () => import('@/views/404/index.vue')
 }

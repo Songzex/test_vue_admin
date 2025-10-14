@@ -1,12 +1,11 @@
 <template>
   <div class="layout-container">
-    <div>
-      测试问题
-    </div>
+    <Header />
     <Sidebar />
-    <div class="main-container">
+    <el-main >
       <router-view />
-    </div>
+    </el-main>
+    <Footer />
   </div>
 </template>
 
@@ -24,5 +23,12 @@ import Sidebar from '../components/silder/index.vue'
   flex: 1;
   padding: 20px;
   margin-left: 200px; /* 为侧边栏留出空间 */
+  background-color: #986d6d; /* 添加背景色以便更好地看到内容区域 */
+}
+
+/* 确保内容区域有足够的z-index */
+:deep(.main-container) {
+  position: relative;
+  z-index: 1;
 }
 </style>

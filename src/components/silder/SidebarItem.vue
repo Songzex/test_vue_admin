@@ -25,7 +25,7 @@
     <!-- 2. 菜单项类型（type=1）：渲染为可点击的菜单 -->
     <el-menu-item
         v-else-if="menu.type === 1 && menu.url"
-        :index="'/' + menu.url"
+        :index="resolveFullPath(menu)"
         @click="handleMenuItemClick(menu)"
     >
       <el-icon v-if="menu.icon">
@@ -39,7 +39,7 @@
     <!-- 3. 处理目录类型但没有子菜单的情况 -->
     <el-menu-item
         v-else-if="menu.type === 0 && (!menu.list || menu.list.length === 0) && menu.url"
-        :index="'/' + menu.url"
+        :index="resolveFullPath(menu)"
         @click="handleMenuItemClick(menu)"
     >
       <el-icon v-if="menu.icon">
@@ -80,6 +80,11 @@ const resolveIndex = (menu) => {
   return menu.type === 0 ? menu.menuId.toString() : (menu.url || menu.menuId.toString())
 }
 
+// 解析完整路径
+const resolveFullPath = (menu) => {
+  return menu.url ? '/' + menu.url : menu.menuId.toString()
+}
+
 // 解析子菜单的基础路径（处理嵌套路由）
 const resolveSubBasePath = (parentMenu, subMenu) => {
   // 拼接父路径和子路径（根据实际项目路由格式调整）
@@ -93,10 +98,22 @@ const resolveSubBasePath = (parentMenu, subMenu) => {
 
 // 处理菜单项点击事件
 const handleMenuItemClick = (menu) => {
-  if (menu.url && router) {
-    router.push('/' + menu.url)
+  console.log('点击菜单项:', menu)
+  if (menu.url) {
+    // 检查router是否有效
+    if (router && typeof router.push === 'function') {
+      const fullPath = '/' + menu.url
+      console.log('导航到:', fullPath)
+      router.push(fullPath).catch(err => {
+        console.error('路由导航错误:', err)
+      })
+    } else {
+      // 如果router不可用，使用window.location进行导航
+      console.warn('Router不可用，使用window.location导航')
+      window.location.hash = '#/' + menu.url
+    }
   } else {
-    console.warn('Router not available or menu URL is missing', menu)
+    console.warn('菜单URL缺失:', menu)
   }
 }
 </script>

@@ -5,7 +5,7 @@ export function getMenuList() {
     return new Promise((resolve, reject) => {
         // 模拟API请求
         setTimeout(() => {
-            resolve([
+            const menuData = [
                 {
                     "menuId": 214,
                     "parentId": 0,
@@ -42,7 +42,9 @@ export function getMenuList() {
                         }
                     ]
                 }
-            ]);
+            ];
+            console.log('获取菜单数据:', menuData);
+            resolve(menuData);
         }, 100);
     });
 }

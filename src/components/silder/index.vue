@@ -47,7 +47,8 @@ onMounted(async () => {
     
     // 添加动态路由
     const { addDynamicRoutes } = await import('@/router/index.js')
-    addDynamicRoutes(menuList.value)
+    const dynamicRoutes = addDynamicRoutes(menuList.value)
+    console.log('动态路由:', dynamicRoutes)
   } catch (error) {
     console.error('获取菜单失败:', error)
   }
@@ -60,7 +61,10 @@ const isCollapse = computed(() => store.state.app?.sidebarCollapse || false)
 const activeMenu = computed(() => {
   // 从路由中提取完整路径，用于匹配菜单
   if (route && route.path) {
-    return route.path
+    console.log('当前路由路径:', route.path)
+    // 确保路径以 / 开头
+    const path = route.path.startsWith('/') ? route.path : '/' + route.path;
+    return path;
   }
   return '/dashboard'
 })
