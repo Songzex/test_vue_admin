@@ -1,25 +1,37 @@
 <template>
-  <div class="sidebar-container">
-    <!-- 侧边栏菜单 -->
-    <el-menu
-        mode="vertical"
-        :collapse="isCollapse"
-        :default-active="activeMenu"
-        :background-color="theme.menuBg"
-        :text-color="theme.menuText"
-        :active-text-color="theme.menuActiveText"
-        :collapse-transition="false"
-        :unique-opened="false"
-    >
-      <!-- 渲染菜单列表（递归入口） -->
-      <sidebar-item
-          v-for="menu in menuList"
-          :key="menu.menuId"
-          :menu="menu"
-          :base-path="resolveBasePath(menu)"
-          :route="route"
-      />
-    </el-menu>
+  <div class="sidebar-top">
+    <!-- 顶部内容（如logo、用户信息等） -->
+  </div>
+  <div class="sidebar-logo">
+    <!-- 侧边栏logo -->
+    <div class="sidebar-container">
+      <!-- 侧边栏菜单 -->
+      <el-menu
+          mode="vertical"
+          :collapse="isCollapse"
+          :default-active="activeMenu"
+          :background-color="theme.menuBg"
+          :text-color="theme.menuText"
+          :active-text-color="theme.menuActiveText"
+          :collapse-transition="false"
+          :unique-opened="false"
+      >
+        <!-- 渲染菜单列表（递归入口） -->
+        <sidebar-item
+            v-for="menu in menuList"
+            :key="menu.menuId"
+            :menu="menu"
+            :base-path="resolveBasePath(menu)"
+            :route="route"
+        />
+      </el-menu>
+    </div>
+    <div>
+      <router-view />
+    </div>
+  </div>
+  <div class="sidebar-bottom">
+    <!-- 底部内容（如用户信息、设置等） -->
   </div>
 </template>
 
@@ -50,9 +62,9 @@ onMounted(async () => {
     const { addDynamicRoutes } = await import('@/router/index.js')
     const dynamicRoutes = addDynamicRoutes(menuList.value)
     console.log('动态路由:', dynamicRoutes)
-    
+
     // 手动导航到默认页面
-    router.push('/dashboard')
+    //await router.push('/dashboard')
   } catch (error) {
     console.error('获取菜单失败:', error)
   }
@@ -101,5 +113,13 @@ watch(
   left: 0;
   z-index: 1000;
   background-color: #304156;
+}
+.sidebar-logo{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
 }
 </style>

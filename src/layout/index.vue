@@ -1,22 +1,9 @@
 <template>
-  <div class="layout-container">
-    <div class="header">
-<!--      <h2>管理系统</h2>-->
-    </div>
-    <div class="main-wrapper">
-      <Sidebar />
-      <el-main class="main-container">
-        <router-view />
-      </el-main>
-    </div>
-    <div class="footer">
-      <p>© 2025 管理系统</p>
-    </div>
-  </div>
+  <LayOut />
 </template>
 
 <script setup>
-import Sidebar from '../components/silder/index.vue'
+import LayOut from '@/components/layout/index.vue'
 </script>
 
 <style scoped>
@@ -43,10 +30,16 @@ import Sidebar from '../components/silder/index.vue'
 }
 
 .main-container {
-  width: 800px;
+  display: flex;
+  flex: 1;
+  padding: 0;
+  background-color: #f0f2f5;
+  overflow: hidden;
+}
+
+.content-wrapper {
   flex: 1;
   padding: 20px;
-  background-color: #f0f2f5;
   overflow-y: auto;
 }
 

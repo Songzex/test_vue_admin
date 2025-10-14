@@ -5,13 +5,13 @@ import { reactive } from 'vue'
 const themeConfig = {
     // 菜单主题
     menuBg: '#304156',
-    menuText: '#bfcbd9',
-    menuActiveText: '#409eff',
+    menuText: '#aea7a7',
+    menuActiveText: '#e0ebed',
 
     // 侧边栏主题
     sidebarBg: '#2b2f3a',
     sidebarText: '#bfcbd9',
-    sidebarActiveText: '#409eff',
+    sidebarActiveText: '#c0d3fd',
 
     // 头部主题
     headerBg: '#ffffff',
