@@ -1,16 +1,15 @@
 <template>
-  <div class="layout-container"><div>
+  <div class="layout-container">
+    <div>
     测试问题
-  </div>
+    </div>
     <Sidebar></Sidebar>
     <router-view />
   </div>
 </template>
 
 <script setup>
-import Sidebar from '/src/components/silder/index.vue'
-// 布局组件，用于包裹页面内容
-// import Sidebar from './components/silder/index.vue'
+import Sidebar from '../components/silder/index.vue'
 </script>
 
 <style scoped>

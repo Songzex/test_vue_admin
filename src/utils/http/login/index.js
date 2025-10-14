@@ -9,7 +9,7 @@ export function getMenuList() {
                 {
                     "menuId": 214,
                     "parentId": 0,
-                    "name": "礼物管理",
+                    "name": "首页管理",
                     "url": null,
                     "type": 0,
                     "icon": "Present",
@@ -17,7 +17,7 @@ export function getMenuList() {
                         {
                             "menuId": 217,
                             "parentId": 214,
-                            "name": "礼物配置",
+                            "name": "首页配置",
                             "url": "login/index",
                             "type": 1,
                             "icon": "Setting",
@@ -27,7 +27,7 @@ export function getMenuList() {
                 {
                     "menuId": 215,
                     "parentId": 0,
-                    "name": "其他管理",
+                    "name": "404管理",
                     "url": null,
                     "type": 0,
                     "icon": "Present",

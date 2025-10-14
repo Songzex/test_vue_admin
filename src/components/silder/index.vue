@@ -24,19 +24,30 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue'
+import { computed, watch ,onMounted,ref} from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem.vue' // 递归子组件
 import { useTheme } from '@/hooks/userTheme.js' //
-
+import { getMenuList } from '@/utils/http/login/index.js'
 // 获取状态和路由
 const store = useStore()
 const route = useRoute()
 const { theme } = useTheme()
-
+const menuList=ref([])
+// 确保在组件挂载时获取菜单列表
+onMounted(async () => {
+  try {
+    menuList.value= await getMenuList();
+    // 使用 commit 更新状态
+    store.commit('permission/SET_ROUTES', menuList.value);
+    console.log('菜单列表:', menuList.value)
+  } catch (error) {
+    console.error('获取菜单失败:', error)
+  }
+})
 // 从Vuex获取后端返回的原始菜单列表（也可直接使用路由数据）
-const menuList = computed(() => store.state.permission.menuList)
+// const menuList = computed( async () =>  await  getMenuList())
 console.log('菜单列表menuList:', menuList.value)
 // 侧边栏折叠状态（可从Vuex获取全局状态）
 const isCollapse = computed(() => store.state.app.sidebarCollapse)

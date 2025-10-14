@@ -1,6 +1,6 @@
 <template>
-  <!-- 仅渲染非隐藏的菜单 -->
-  <template v-if="!menu.hidden">
+  <!-- 仅渲染非隐藏的菜单  v-if="!menu.hidden"-->
+  <template >
     <!-- 1. 目录类型（type=0）且有子菜单：渲染为可展开的菜单组 -->
     <el-sub-menu
         v-if="menu.type === 0 && menu.list && menu.list.length > 0"
@@ -35,7 +35,6 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-
 // 接收父组件传递的菜单数据和基础路径
 const props = defineProps({
   menu: {
