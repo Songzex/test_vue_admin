@@ -1,8 +1,5 @@
 // 修改 App.vue 文件
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import Sidebar from './components/silder/index.vue'
 import layout from './layout/index.vue'
 import {onMounted} from "vue";
 import {useStore} from "vuex";

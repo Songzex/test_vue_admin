@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-container">
     <!-- 侧边栏菜单 -->
-
+<!--菜单没有被展示-->
     <el-menu
         mode="vertical"
         :collapse="isCollapse"
