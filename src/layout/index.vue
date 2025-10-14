@@ -1,9 +1,22 @@
 <template>
-  <LayOut />
+  <div class="layout-container">
+    <div class="header">
+      <h2>管理系统</h2>
+    </div>
+    <div class="main-wrapper">
+      <Sidebar />
+      <div class="content-container">
+        <router-view />
+      </div>
+    </div>
+    <div class="footer">
+      <p>© 2025 管理系统</p>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import LayOut from '@/components/layout/index.vue'
+import Sidebar from '../components/layout/index.vue'
 </script>
 
 <style scoped>
@@ -29,18 +42,11 @@ import LayOut from '@/components/layout/index.vue'
   overflow: hidden;
 }
 
-.main-container {
-  display: flex;
-  flex: 1;
-  padding: 0;
-  background-color: #f0f2f5;
-  overflow: hidden;
-}
-
-.content-wrapper {
+.content-container {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  background-color: #f0f2f5;
 }
 
 .footer {

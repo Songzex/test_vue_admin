@@ -1,9 +1,5 @@
 <template>
-  <div class="sidebar-top">
-    <!-- 顶部内容（如logo、用户信息等） -->
-  </div>
-  <div class="sidebar-logo">
-    <!-- 侧边栏logo -->
+  <div class="sidebar-main">
     <div class="sidebar-container">
       <!-- 侧边栏菜单 -->
       <el-menu
@@ -26,12 +22,6 @@
         />
       </el-menu>
     </div>
-    <div>
-      <router-view />
-    </div>
-  </div>
-  <div class="sidebar-bottom">
-    <!-- 底部内容（如用户信息、设置等） -->
   </div>
 </template>
 
@@ -104,22 +94,17 @@ watch(
 </script>
 
 <style scoped>
+.sidebar-main {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
 .sidebar-container {
   width: 200px;
   height: 100%;
   overflow-y: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
   background-color: #304156;
-}
-.sidebar-logo{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
 }
 </style>
