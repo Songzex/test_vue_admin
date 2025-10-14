@@ -31,15 +31,13 @@ function convertMenuToRoute(menu) {
     // 基础路由配置
     const route = {
         path: menu.url ? `/${menu.url}` : `/${menu.menuId}`, // 路径处理
-        name: menu.name.replace(/\s/g, ''), // 去除空格作为路由名称
+        name: menu.name ? menu.name.replace(/\s/g, '') : `menu_${menu.menuId}`, // 去除空格作为路由名称
         meta: {
-            title: menu.name, // 菜单名称
-            icon: menu.icon,  // 菜单图标
+            title: menu.name || '', // 菜单名称
+            icon: menu.icon || '',  // 菜单图标
             menuId: menu.menuId, // 菜单ID
-            perms: menu.perms // 权限标识
+            perms: menu.perms || '' // 权限标识
         },
-        // 根据URL动态匹配组件（关键映射）
-        component: getComponentByUrl(menu.url),
         children: [] // 子路由
     }
 
@@ -53,13 +51,27 @@ function convertMenuToRoute(menu) {
         })
     }
 
-    // 目录类型菜单(type=0)通常作为路由容器，不需要组件
+    // 目录类型菜单(type=0)通常作为路由容器，需要组件
     if (menu.type === 0) {
-        route.component = () => import('@/layout/index.vue') // 使用布局组件作为容器
-        // 如果目录只有一个子路由，设置重定向
-        if (route.children.length === 1) {
-            route.redirect = route.children[0].path
+        // 如果有子路由，使用布局组件作为容器
+        if (route.children.length > 0) {
+            route.component = () => import('@/layout/index.vue')
+            // 如果目录只有一个子路由，设置重定向
+            if (route.children.length === 1) {
+                route.redirect = route.children[0].path
+            }
+        } else {
+            // 没有子路由则不生成路由
+            return null
         }
+    } else if (menu.type === 1) {
+        // 菜单项类型(type=1)需要具体组件
+        route.component = getComponentByUrl(menu.url)
+    }
+
+    // 如果没有组件则不生成路由
+    if (!route.component) {
+        return null
     }
 
     return route
@@ -76,11 +88,21 @@ function getComponentByUrl(url) {
     const componentMap = {
         'login/index': () => import('@/views/login/index.vue'),
         '404/index': () => import('@/views/404/index.vue'),
-        // 添加更多页面的映射关系
-        'dashboard': () => import('@/views/index/index.vue')
+        'dashboard': () => import('@/views/dashboard/index.vue'),
+        'index': () => import('@/views/index/index.vue')
     }
 
-    return componentMap[url] || (() => import('@/views/404/index.vue'))
+    // 尝试精确匹配
+    if (componentMap[url]) {
+        return componentMap[url]
+    }
+
+    // 尝试模糊匹配（去掉可能的文件扩展名）
+    const cleanUrl = url.replace('.vue', '').replace('.js', '')
+    if (componentMap[cleanUrl]) {
+        return componentMap[cleanUrl]
+    }
+
+    // 默认返回404页面
+    return () => import('@/views/404/index.vue')
 }
-
-

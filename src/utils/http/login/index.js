@@ -34,7 +34,7 @@ export function getMenuList() {
                     "list": [
                         {
                             "menuId": 218,
-                            "parentId": 214,
+                            "parentId": 215,
                             "name": "简化配置",
                             "url": "404/index",
                             "type": 1,

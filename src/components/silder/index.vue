@@ -1,7 +1,6 @@
 <template>
   <div class="sidebar-container">
     <!-- 侧边栏菜单 -->
-<!--菜单没有被展示-->
     <el-menu
         mode="vertical"
         :collapse="isCollapse"
@@ -10,7 +9,7 @@
         :text-color="theme.menuText"
         :active-text-color="theme.menuActiveText"
         :collapse-transition="false"
-        router
+        :unique-opened="false"
     >
       <!-- 渲染菜单列表（递归入口） -->
       <sidebar-item
@@ -18,6 +17,7 @@
           :key="menu.menuId"
           :menu="menu"
           :base-path="resolveBasePath(menu)"
+          :route="route"
       />
     </el-menu>
   </div>
@@ -28,13 +28,15 @@ import { computed, watch ,onMounted,ref} from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem.vue' // 递归子组件
-import { useTheme } from '@/hooks/userTheme.js' //
+import { useTheme } from '@/hooks/userTheme.js'
 import { getMenuList } from '@/utils/http/login/index.js'
+
 // 获取状态和路由
 const store = useStore()
 const route = useRoute()
 const { theme } = useTheme()
 const menuList=ref([])
+
 // 确保在组件挂载时获取菜单列表
 onMounted(async () => {
   try {
@@ -42,15 +44,17 @@ onMounted(async () => {
     // 使用 commit 更新状态
     store.commit('permission/SET_ROUTES', menuList.value);
     console.log('菜单列表:', menuList.value)
+    
+    // 添加动态路由
+    const { addDynamicRoutes } = await import('@/router/index.js')
+    addDynamicRoutes(menuList.value)
   } catch (error) {
     console.error('获取菜单失败:', error)
   }
 })
-// 从Vuex获取后端返回的原始菜单列表（也可直接使用路由数据）
-// const menuList = computed( async () =>  await  getMenuList())
-console.log('菜单列表menuList:', menuList.value)
+
 // 侧边栏折叠状态（可从Vuex获取全局状态）
-const isCollapse = computed(() => store.state.app.sidebarCollapse)
+const isCollapse = computed(() => store.state.app?.sidebarCollapse || false)
 
 // 计算当前激活的菜单（根据路由路径匹配）
 const activeMenu = computed(() => {
@@ -58,8 +62,9 @@ const activeMenu = computed(() => {
   if (route && route.path) {
     return route.path
   }
-  return ''
+  return '/dashboard'
 })
+
 // 解析菜单的基础路径（用于嵌套路由）
 const resolveBasePath = (menu) => {
   // 顶级菜单（parentId=0）且类型为目录（type=0）时，路径为自身或子菜单路径
@@ -70,11 +75,9 @@ const resolveBasePath = (menu) => {
 }
 
 // 监听路由变化，处理特殊场景（如刷新后菜单状态）
-// 监听路由变化，处理特殊场景（如刷新后菜单状态）
 watch(
-    () => route?.path,  // 添加可选链操作符
+    () => route?.path,
     (newPath) => {
-      // 可在此处添加菜单状态同步逻辑
       console.log('Route path changed to:', newPath)
     }
 )
@@ -82,12 +85,13 @@ watch(
 
 <style scoped>
 .sidebar-container {
-  width: 200px; /* 设置固定宽度 */
+  width: 200px;
   height: 100%;
   overflow-y: auto;
-  position: fixed; /* 固定定位 */
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  background-color: #304156;
 }
 </style>
