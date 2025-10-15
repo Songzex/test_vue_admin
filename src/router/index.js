@@ -14,12 +14,6 @@ export const constantRoutes = [
         component: () => import('@/views/404/index.vue'),
         hidden: true
     },
-    // // 添加默认首页路由
-    // {
-    //     path: '/',
-    //     redirect: '/dashboard',
-    //     hidden: true
-    // },
     {
         path: '/dashboard',
         component: () => import('@/views/dashboard/index.vue'),
@@ -45,26 +39,20 @@ export function addDynamicRoutes(menuList) {
     const dynamicRoutes = convertMenuToRoutes(menuList)
     console.log('转换后的动态路由:', dynamicRoutes)
 
-    // 2. 创建根路由容器（通常使用Layout组件）
-    const rootRoute = {
-        path: '/',
-        component: Layout,
-        redirect: '/dashboard',
-        children: dynamicRoutes
-    }
-
-    // 3. 添加动态路由到路由系统
-    router.addRoute(rootRoute)
-    console.log('已添加根路由')
-
-    // 4. 添加404路由作为最后一项
+    // 2. 添加动态路由到路由系统
+    // 注意：这里直接将动态路由添加到根路径下，而不是创建额外的根路由容器
+    dynamicRoutes.forEach(route => {
+        router.addRoute(route)
+    })
+    
+    // 3. 添加404路由作为最后一项
     router.addRoute({
         path: '/:pathMatch(.*)*',
         redirect: '/404',
         hidden: true
     })
     console.log('已添加404路由')
-
+    
     console.log('添加的动态路由:', dynamicRoutes)
     console.log('所有路由:', router.getRoutes())
     
