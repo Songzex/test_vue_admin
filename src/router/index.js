@@ -14,12 +14,12 @@ export const constantRoutes = [
         component: () => import('@/views/404/index.vue'),
         hidden: true
     },
-    // 添加默认首页路由
-    {
-        path: '/',
-        redirect: '/dashboard',
-        hidden: true
-    },
+    // // 添加默认首页路由
+    // {
+    //     path: '/',
+    //     redirect: '/dashboard',
+    //     hidden: true
+    // },
     {
         path: '/dashboard',
         component: () => import('@/views/dashboard/index.vue'),

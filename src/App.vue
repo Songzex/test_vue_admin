@@ -44,5 +44,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <layout />
+  <layout></layout>
 </template>

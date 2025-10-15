@@ -1,27 +1,25 @@
 <template>
-  <div class="sidebar-main">
-    <div class="sidebar-container">
-      <!-- 侧边栏菜单 -->
-      <el-menu
-          mode="vertical"
-          :collapse="isCollapse"
-          :default-active="activeMenu"
-          :background-color="theme.menuBg"
-          :text-color="theme.menuText"
-          :active-text-color="theme.menuActiveText"
-          :collapse-transition="false"
-          :unique-opened="false"
-      >
-        <!-- 渲染菜单列表（递归入口） -->
-        <sidebar-item
-            v-for="menu in menuList"
-            :key="menu.menuId"
-            :menu="menu"
-            :base-path="resolveBasePath(menu)"
-            :route="route"
-        />
-      </el-menu>
-    </div>
+  <div class="sidebar-container">
+    <!-- 侧边栏菜单 -->
+    <el-menu
+        mode="vertical"
+        :collapse="isCollapse"
+        :default-active="activeMenu"
+        :background-color="theme.menuBg"
+        :text-color="theme.menuText"
+        :active-text-color="theme.menuActiveText"
+        :collapse-transition="false"
+        :unique-opened="false"
+    >
+      <!-- 渲染菜单列表（递归入口） -->
+      <sidebar-item
+          v-for="menu in menuList"
+          :key="menu.menuId"
+          :menu="menu"
+          :base-path="resolveBasePath(menu)"
+          :route="route"
+      />
+    </el-menu>
   </div>
 </template>
 
@@ -31,34 +29,13 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import SidebarItem from './SidebarItem.vue' // 递归子组件
 import { useTheme } from '@/hooks/userTheme.js'
-import { getMenuList } from '@/utils/http/login/index.js'
 
 // 获取状态和路由
 const store = useStore()
 const route = useRoute()
 const router = useRouter()
 const { theme } = useTheme()
-const menuList=ref([])
-
-// 确保在组件挂载时获取菜单列表
-onMounted(async () => {
-  try {
-    menuList.value= await getMenuList();
-    // 使用 commit 更新状态
-    store.commit('permission/SET_ROUTES', menuList.value);
-    console.log('菜单列表:', menuList.value)
-    
-    // 添加动态路由
-    const { addDynamicRoutes } = await import('@/router/index.js')
-    const dynamicRoutes = addDynamicRoutes(menuList.value)
-    console.log('动态路由:', dynamicRoutes)
-
-    // 手动导航到默认页面
-    //await router.push('/dashboard')
-  } catch (error) {
-    console.error('获取菜单失败:', error)
-  }
-})
+const menuList = computed(() => store.state.permission.routes || [])
 
 // 侧边栏折叠状态（可从Vuex获取全局状态）
 const isCollapse = computed(() => store.state.app?.sidebarCollapse || false)
@@ -94,13 +71,6 @@ watch(
 </script>
 
 <style scoped>
-.sidebar-main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  height: 100%;
-}
-
 .sidebar-container {
   width: 200px;
   height: 100%;

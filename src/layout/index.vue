@@ -1,17 +1,15 @@
 <template>
-  <div class="layout-container">
-    <div class="header">
-      <h2>管理系统</h2>
-    </div>
-    <div class="main-wrapper">
-      <Sidebar />
-      <div class="content-container">
-        <router-view />
-      </div>
-    </div>
-    <div class="footer">
-      <p>© 2025 管理系统</p>
-    </div>
+  <div class="common-layout">
+    <el-container>
+      <el-header>Header</el-header>
+      <el-container>
+        <el-aside width="200px"><Sidebar class="sidebar-container" /></el-aside>
+        <el-container>
+          <el-main><router-view /></el-main>
+          <el-footer>Footer</el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
@@ -21,41 +19,45 @@ import Sidebar from '../components/layout/index.vue'
 
 <style scoped>
 .layout-container {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.header {
+.headers {
+  background-color: #b3c0d1;
+  color: #333;
+  width: 100%;
   height: 60px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  z-index: 100;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.main-wrapper {
+.main-container {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
-.content-container {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #f0f2f5;
+.sidebar-container {
+  height: calc(100vh - 60px);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 200px;
+  z-index: 1000;
 }
 
-.footer {
-  height: 50px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 100;
+.content-wrapper {
+  flex: 1;
+  margin-left: 200px;
+  padding: 20px;
+  background-color: #f0f2f5;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  margin-top: 0px;
 }
 </style>
