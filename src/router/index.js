@@ -23,6 +23,11 @@ export const constantRoutes = [
         path: '/index',
         component: () => import('@/views/index/index.vue'),
         hidden: true
+    },
+    {
+        path: '/admin',
+        component: () => import('@/views/admin/index.vue'),
+        hidden: true
     }
 ]
 

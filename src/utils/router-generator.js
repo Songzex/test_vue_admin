@@ -104,7 +104,8 @@ function getComponentByUrl(url) {
         'login/index': () => import('@/views/login/index.vue'),
         '404/index': () => import('@/views/404/index.vue'),
         'dashboard': () => import('@/views/dashboard/index.vue'),
-        'index': () => import('@/views/index/index.vue')
+        'index': () => import('@/views/index/index.vue'),
+        'admin': () => import('@/views/admin/index.vue')
     }
 
     // 尝试精确匹配
