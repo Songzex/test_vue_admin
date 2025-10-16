@@ -128,3 +128,5 @@ class HttpRequest {
 const http = new HttpRequest(BASE_URL)
 
 export default http
+
+// 导出getToken方法

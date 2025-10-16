@@ -1,7 +1,9 @@
+
+
 /**
  * 将后端返回的菜单数据转换为Vue Router路由配置
  * @param {Array} menuList 后端返回的菜单列表
- * @returns {Array} 轉换后的路由配置数组
+ * @returns {Array} 转换后的路由配置数组
  */
 export function convertMenuToRoutes(menuList) {
     const routes = []
@@ -60,6 +62,7 @@ function convertMenuToRoute(menu) {
     if (menu.type === 0) {
         // 如果有子路由，使用布局组件作为容器
         if (route.children.length > 0) {
+            // 使用布局组件作为容器
             route.component = () => import('@/layout/index.vue')
             // 如果目录只有一个子路由，设置重定向
             if (route.children.length === 1) {
