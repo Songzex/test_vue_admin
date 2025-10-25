@@ -26,8 +26,8 @@ onMounted(async () => {
     console.log('动态路由添加完成:', dynamicRoutes)
     
     // 每次刷新后都导航到仪表板页面
-    console.log('导航到默认页面: /index')
-    router.push('/index').catch(err => {
+    console.log('导航到默认页面: /edit')
+    router.push('/edit').catch(err => {
       console.error('路由导航错误:', err)
     })
   } catch (error) {
