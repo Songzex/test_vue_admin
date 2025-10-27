@@ -1,5 +1,6 @@
 <script setup>
 import EditSilder from "@/components/editsilder/editSilder.vue";
+import Edit from "@/components/edit/edit.vue";
 </script>
 
 <template>
@@ -7,7 +8,9 @@ import EditSilder from "@/components/editsilder/editSilder.vue";
    <div class="sidebar-wrapper">
      <EditSilder></EditSilder>
    </div>
-    <div class="header"></div>
+    <div class="header">
+    <edit></edit>
+    </div>
  </div>
 </template>
 
@@ -15,7 +18,7 @@ import EditSilder from "@/components/editsilder/editSilder.vue";
 .admin-edit{
   width: 100%;
   display: grid;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 2fr 10fr;
 }
 .sidebar-wrapper {
   justify-self: start;

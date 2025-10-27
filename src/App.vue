@@ -27,7 +27,7 @@ onMounted(async () => {
     
     // 每次刷新后都导航到仪表板页面
     console.log('导航到默认页面: /edit')
-    router.push('/edit').catch(err => {
+    router.push('/index').catch(err => {
       console.error('路由导航错误:', err)
     })
   } catch (error) {
