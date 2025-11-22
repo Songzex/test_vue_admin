@@ -1,5 +1,3 @@
-
-
 /**
  * 将后端返回的菜单数据转换为Vue Router路由配置
  * @param {Array} menuList 后端返回的菜单列表
@@ -105,7 +103,9 @@ function getComponentByUrl(url) {
         '404/index': () => import('@/views/404/index.vue'),
         'dashboard': () => import('@/views/dashboard/index.vue'),
         'index': () => import('@/views/index/index.vue'),
-        'admin': () => import('@/views/admin/index.vue')
+        'admin': () => import('@/views/admin/index.vue'),
+        'UpdateResource/UpdateResource': () => import('@/views/UpdateResource/UpdateResource.vue'),
+        'admin-edits/admin-edit': () => import('@/views/admin-edits/admin-edit.vue')
     }
 
     // 尝试精确匹配

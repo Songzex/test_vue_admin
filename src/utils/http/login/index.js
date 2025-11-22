@@ -18,7 +18,7 @@ export function getMenuList() {
                             "menuId": 217,
                             "parentId": 214,
                             "name": "首页配置",
-                            "url": "login/index",
+                            "url": "index",
                             "type": 1,
                             "icon": "Setting",
                         }
@@ -41,7 +41,43 @@ export function getMenuList() {
                             "icon": "Setting",
                         }
                     ]
+                },
+            {
+                "menuId": 216,
+                "parentId": 0,
+                "name": "更新资源",
+                "url": null,
+                "type": 0,
+                "icon": "Present",
+                "list": [
+                {
+                    "menuId": 219,
+                    "parentId": 216,
+                    "name": "上传漫画",
+                    "url": "UpdateResource/UpdateResource",
+                    "type": 1,
+                    "icon": "Setting",
                 }
+            ]
+            }
+            // {
+            //     "menuId": 220,
+            //     "parentId": 0,
+            //     "name": "编辑管理",
+            //     "url": "edit",
+            //     "type": 0,
+            //     "icon": "Edit",
+            //     "list": [
+            //         {
+            //             "menuId": 221,
+            //             "parentId": 220,
+            //             "name": "编辑页面",
+            //             "url": "admin-edits/admin-edit",
+            //             "type": 1,
+            //             "icon": "Setting",
+            //         }
+            //     ]
+            // }
             ];
             console.log('获取菜单数据:', menuData);
             resolve(menuData);

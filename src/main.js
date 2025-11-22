@@ -1,4 +1,5 @@
 import './assets/main.css'
+import './assets/icon/iconfont.css' // 引入自定义图标字体
 
 import { createApp } from 'vue'
 import App from './App.vue'

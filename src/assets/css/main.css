@@ -1,0 +1,12 @@
+
+/* src/assets/main.css */
+@tailwind base;    /* 基础样式（如默认字体、margin/padding 重置） */
+@tailwind components; /* 组件类（可自定义复用组件） */
+@tailwind utilities; /* 工具类（核心！如 bg-red-500、flex、text-xl 等） */
+
+/* 可选：自定义全局样式（会覆盖 Tailwind 基础样式） */
+@layer base {
+    body {
+        @apply bg-gray-50 text-gray-800; /* 使用 Tailwind 语法写全局样式 */
+    }
+}

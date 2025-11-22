@@ -3,7 +3,7 @@ import axios from 'axios'
 import store from '@/store'
 
 // 定义基础URL
-const BASE_URL ='https://scycy/font/api';
+const BASE_URL =' http://192.168.137.1:8081';
 
 // 定义默认请求头
 const DEFAULT_HEADERS = {
@@ -63,7 +63,8 @@ class HttpRequest {
 
                 // 根据后端约定处理响应数据
                 const res = response.data
-                if (res.code === 200) {
+                // 兼容不同的成功状态码 (0 或 200 都表示成功)
+                if (res.code === 200 || res.code === 0) {
                     return res
                 } else {
                     // 可以在这里统一处理错误

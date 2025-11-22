@@ -5,7 +5,7 @@
   <div class="dashboard-container">
     <h1>仪表盘</h1>
     <p>欢迎来到管理系统</p>
-    
+
     <div class="dashboard-content">
       <el-row :gutter="20">
         <el-col :span="8">
@@ -19,7 +19,7 @@
             </div>
           </el-card>
         </el-col>
-        
+
         <el-col :span="8">
           <el-card class="dashboard-card">
             <div class="card-header">
@@ -31,7 +31,7 @@
             </div>
           </el-card>
         </el-col>
-        
+
         <el-col :span="8">
           <el-card class="dashboard-card">
             <div class="card-header">
@@ -44,7 +44,7 @@
           </el-card>
         </el-col>
       </el-row>
-      
+
       <el-row :gutter="20" style="margin-top: 20px;">
         <el-col :span="24">
           <el-card class="dashboard-card">

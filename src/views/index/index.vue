@@ -1,35 +1,36 @@
 <script setup>
+import UserCard from "@/components/usercard/UserCard.vue";
 </script>
 
 <template>
   <div class="index-container">
 
-    <div class="im">
+<!--    <div class="im">
       <video autoplay loop muted playsinline>
         <source src="../../assets/bea.mp4" type="video/mp4">
-        <!-- 可选：添加其他格式视频作为兼容 -->
+        &lt;!&ndash; 可选：添加其他格式视频作为兼容 &ndash;&gt;
         <source src="../../assets/bea.mp4" type="video/webm">
       </video>
-      <!-- 上部分虚化遮罩 -->
+      &lt;!&ndash; 上部分虚化遮罩 &ndash;&gt;
       <div class="mask top-mask"></div>
-      <!-- 下部分虚化遮罩 -->
+      &lt;!&ndash; 下部分虚化遮罩 &ndash;&gt;
       <div class="mask bottom-mask"></div>
-<!--    </div>-->
-    </div>
+&lt;!&ndash;    </div>&ndash;&gt;
+    </div>-->
     <div class="headerr">
       <div style="display: flex;justify-content: start;align-items: center;padding-top: 15px;padding-left: 23px;column-gap: 25px;
 ">
         <img src="../../assets/logo2.png" style="width: 40px;height: 40px;border-radius: 50px
 ">
-        <div class="text">泽熙小站</div>
+<!--        <div class="text">泽熙小站</div>-->
       </div>
-
     </div>
  <div class="list">
-   <div>——推荐文章列表</div>
-   <div>——技术文章列表</div>
-   <div>——学习文章列表</div>
-   <div>——潜力文章列表</div>
+   <div class="block01">
+     <UserCard></UserCard>
+   </div>
+   <div class="block02">——技术文章列表</div>
+   <div class="block03">——学习文章列表</div>
  </div>
   </div>
 </template>
@@ -88,12 +89,18 @@
     height: 400px;
   }
   .list{
-    padding-left: 633px;
-    display: flex;
-    flex-direction: column;
-    justify-content:  center;
+    margin-top: 2%;
+    margin-left: 13%;
+    margin-right: 13%;
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    justify-content:space-around;
+    column-gap: 0.23rem;
     align-items: start;
-    row-gap: 134px;
+    .block01{
+      width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

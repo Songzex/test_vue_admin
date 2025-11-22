@@ -33,7 +33,13 @@ export const constantRoutes = [
         path: '/edit',
         component: () => import('@/views/admin-edits/admin-edit.vue'),
         hidden: true
+    }, {
+        path: '/icon',
+        component: () => import('@/views/icon-demo/IconDemoView.vue'),
+        hidden: true
     }
+
+
 ]
 
 // 创建路由实例
