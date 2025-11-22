@@ -1,5 +1,6 @@
 <script setup>
 import UserCard from "@/components/usercard/UserCard.vue";
+import FeedType from "@/components/FeedType/feedType.vue";
 </script>
 
 <template>
@@ -28,6 +29,7 @@ import UserCard from "@/components/usercard/UserCard.vue";
  <div class="list">
    <div class="block01">
      <UserCard></UserCard>
+     <feed-type></feed-type>
    </div>
    <div class="block02">——技术文章列表</div>
    <div class="block03">——学习文章列表</div>
@@ -95,10 +97,14 @@ import UserCard from "@/components/usercard/UserCard.vue";
     display: grid;
     grid-template-columns: 2fr 4fr 2fr;
     justify-content:space-around;
-    column-gap: 0.23rem;
+    column-gap: 0.83rem;
     align-items: start;
     .block01{
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 2.23rem;
       height: auto;
     }
   }
