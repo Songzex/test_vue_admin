@@ -38,16 +38,26 @@
 </script>
 
 <style scoped>
+.userCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.2);
+}
 .userCard{
   width: 18.5rem;
   height:12.2rem;
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
-  border-radius: 0.23rem;
   row-gap: 1rem; /* 现在row-gap会生效 */
   padding: 1rem;
-  background-color: #fbfbfb;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加阴影效果，增强卡片感 */
+  border-radius: 15%;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  background-color: rgba(251, 251, 251, 0.8);
+  box-shadow: 0 2px 12px 0 rgba(14, 14, 14, 0.1); /* 添加阴影效果，增强卡片感 */
+
+  /* 添加过渡动画效果 */
+  transition: all 0.3s ease;
+  transform: translateY(0);
 
   .row1{
     display: flex;
@@ -82,5 +92,6 @@
       column-gap: 0.25rem;
     }
   }
+
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<div class="userCard">
+<div class="userCard" :style="{ '--bg-opacity': backgroundOpacity }">
   <div  class="row1">
     <div class="img">
     <img
@@ -25,14 +25,20 @@
     </div>
   </div>
   <div class="row3">
-    <el-button  type="primary" style="width: 100%">发布帖子</el-button>
+    <el-button  type="primary" style="width: 98%;">发布帖子</el-button>
   </div>
+
 </div>
 </template>
 
 <script setup>
-
-
+// 定义 props，用于控制背景透明度 (0-1之间, 0表示完全透明，1表示完全不透明)
+const props = defineProps({
+  backgroundOpacity: {
+    type: Number,
+    default: 0
+  }
+})
 </script>
 
 <style scoped>
@@ -41,19 +47,23 @@
   height:12.2rem;
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
-  border-radius: 0.23rem;
   row-gap: 1rem; /* 现在row-gap会生效 */
   padding: 1rem;
-  background-color: #fbfbfb;
+  /* 使用 CSS 变量控制背景透明度 */
+  border-radius: 15%;
+  background-color: rgba(251, 251, 251,0.8);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加阴影效果，增强卡片感 */
-
+  
+  /* 添加过渡动画效果 */
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  
   .row1{
     display: flex;
     align-items: center;
     flex-direction: row;
     column-gap: 10px;
     justify-content: start;
-    align-items: center;
     .img{
       width: 45px;
       height: 45px;
@@ -73,5 +83,11 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+/* 添加鼠标悬停效果，营造起伏感 */
+.userCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.2);
 }
 </style>
