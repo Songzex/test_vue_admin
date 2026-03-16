@@ -37,7 +37,13 @@ export const constantRoutes = [
         path: '/icon',
         component: () => import('@/views/icon-demo/IconDemoView.vue'),
         hidden: true
+    },
+    {
+        path: '/details',
+        component: () => import('@/views/FeedDetils/FeedDetils.vue'),
+        hidden: true
     }
+
 
 
 ]

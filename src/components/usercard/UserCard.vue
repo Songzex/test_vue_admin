@@ -43,16 +43,16 @@ const props = defineProps({
 
 <style scoped>
 .userCard{
-  width: 18.5rem;
-  height:12.2rem;
+  /*width: 18.5rem;
+  height:12.2rem;*/
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
-  row-gap: 1rem; /* 现在row-gap会生效 */
-  padding: 1rem;
+  row-gap: 0.4rem; /* 现在row-gap会生效 */
+  padding: 0.4rem;
   /* 使用 CSS 变量控制背景透明度 */
-  border-radius: 15%;
+  border-radius: 5%;
   background-color: rgba(251, 251, 251,0.8);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加阴影效果，增强卡片感 */
+  box-shadow: 0 0.02rem 0.12rem 0 rgba(0, 0, 0, 0.1); /* 添加阴影效果，增强卡片感 */
   
   /* 添加过渡动画效果 */
   transition: all 0.3s ease;
@@ -62,15 +62,20 @@ const props = defineProps({
     display: flex;
     align-items: center;
     flex-direction: row;
-    column-gap: 10px;
+    column-gap: 2.0rem;
     justify-content: start;
     .img{
-      width: 45px;
-      height: 45px;
+      width: 0.45rem;
+      height: 0.45rem;
       border-radius: 50%;
+    }
+    .name{
+     font-size:  0.18rem;
+      width: max-content;
     }
   }
   .row2{
+    font-size: 0.18rem;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -87,7 +92,7 @@ const props = defineProps({
 
 /* 添加鼠标悬停效果，营造起伏感 */
 .userCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.05rem);
+  box-shadow: 0 0.05rem 0.2rem 0.05rem rgba(0, 0, 0, 0.2);
 }
 </style>

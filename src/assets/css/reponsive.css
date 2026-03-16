@@ -1,0 +1,71 @@
+/* src/assets/css/responsive.css */
+/* 断点1：小屏平板/PC放大175%（视觉宽度≤1200px） */
+@media (max-width: 1097px) {
+    /* 全局通用样式：比如减小全局内边距 */
+    .index-container {
+        width: 100%;
+        /*  //max-width: 1920px;
+          //min-width: auto;*/
+        margin: 0 auto;
+        background-image: url("src/assets/bgg02.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: auto;
+        .list{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            height: 100vh;
+            margin-top: 1.2rem;
+            margin-left: 10%;
+            margin-right: 10%;
+            .im{
+                display: flex;
+                height: 100vh;
+                overflow-y: auto; /* 改为auto而非hidden */
+                column-gap: 0.1rem;
+                flex-direction: column;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE/Edge */
+                .item{
+                    column-gap: 1.2rem;
+                    row-gap: 1.0rem;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+/* 断点2：手机横屏/iPad竖屏（≤768px） */
+@media (max-width: 768px) {
+    /* 内容区：横排变竖排 */
+    .content-row {
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+    }
+    /* 卡片：占满屏幕宽度 */
+    .content-card {
+        width: 100% !important;
+        min-width: auto !important;
+    }
+}
+
+/* 断点3：手机竖屏（≤480px） */
+@media (max-width: 480px) {
+    /* 文字：进一步缩小，避免溢出 */
+    .text-normal {
+        font-size: 0.9rem !important;
+    }
+    /* 按钮：占满屏幕，方便点击 */
+    .btn-primary {
+        width: 100% !important;
+    }
+}

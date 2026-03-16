@@ -21,6 +21,8 @@ import Sidebar from '../components/layout/index.vue'
 <style scoped>
 .common-layout {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .el-header {
@@ -55,6 +57,6 @@ import Sidebar from '../components/layout/index.vue'
   overflow-y: auto;
   margin-left: 200px;
   margin-top: 60px;
-  height: calc(100vh - 60px);
+  flex: 1; /* 占据剩余空间 */
 }
 </style>

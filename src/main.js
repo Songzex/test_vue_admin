@@ -10,6 +10,10 @@ import store from './store'
 import router from './router'
 import { QuillEditor } from '@vueup/vue-quill'
 import 'quill/dist/quill.snow.css' // 引入默认样式（snow 主题，基础美观）
+// 加这行，导入并执行REM适配逻辑
+import './utils/rem.js'
+import '@/assets/css/reponsive.css'
+
 
 const app = createApp(App)
 app.use(store).use(router).use(ElementPlus).mount('#app')

@@ -43,13 +43,12 @@
   box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.2);
 }
 .userCard{
-  width: 18.5rem;
-  height:12.2rem;
+ /* width: 18.5rem;
+  height:12.2rem;*/
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
   row-gap: 1rem; /* 现在row-gap会生效 */
-  padding: 1rem;
-  border-radius: 15%;
+  border-radius: 12px;
   transition: all 0.3s ease;
   transform: translateY(0);
   background-color: rgba(251, 251, 251, 0.8);
@@ -61,9 +60,11 @@
 
   .row1{
     display: flex;
+    padding: 1rem 1.1rem 1.1rem 1.1rem;
     align-items: center;
     flex-direction: row;
-    column-gap: 10px;
+    column-gap: 40rem;
+    row-gap: 1rem;
     justify-content: start;
     align-items: center;
     .img{
@@ -77,7 +78,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: 13px;
+    row-gap: 1rem;
     align-items: center;
   }
   .r1{

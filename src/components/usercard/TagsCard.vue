@@ -44,8 +44,8 @@ const props = defineProps({
 
 <style scoped>
 .userCards{
-  width: 18.5rem;
-  height:12.2rem;
+  /*width: 18.5rem;
+  height:12.2rem;*/
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
   row-gap: 1rem; /* 现在row-gap会生效 */

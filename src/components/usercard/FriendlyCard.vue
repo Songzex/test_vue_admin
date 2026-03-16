@@ -44,8 +44,8 @@ const props = defineProps({
 
 <style scoped>
 .userCard{
-  width: 18.5rem;
-  height:423px;
+  /*width: 18.5rem;
+  height:423px;*/
   display: flex; /* 改为flex布局 */
   flex-direction: column; /* 垂直排列子元素 */
   row-gap: 1rem; /* 现在row-gap会生效 */
@@ -63,7 +63,7 @@ const props = defineProps({
     display: flex;
     align-items: center;
     flex-direction: row;
-    column-gap: 10px;
+    column-gap: 9.3rem;
     justify-content: start;
     .img{
       width: 45px;
